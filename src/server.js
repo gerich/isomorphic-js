@@ -1,14 +1,20 @@
 import express from 'express';
+import React    from 'react';
+import ReactDom from 'react-dom/server';
+import App      from 'components/App';
 
 const app = express();
 
 app.use((request, response) => {
-  response.end('<p>Hello World!</p>');
+  const componentHTML = ReactDom.renderToString(<App />);
+
+  response.end(renderHTML(componentHTML));
 });
 
 const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:8050' : '/';
 
 function renderHTML(componentHTML) {
+  console.log(componentHTML);
   return `
     <!DOCTYPE html>
       <html>
