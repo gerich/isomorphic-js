@@ -18,12 +18,8 @@ var plugins = [
   }),
   new ExtractTextPlugin(cssName),
   new webpack.LoaderOptionsPlugin({
-    options: {
-      eslint: { configFile: '.eslintrc' }
-    },
-  }),
-  new webpack.LoaderOptionsPlugin({
-    debug: process.env.NODE_ENV !== 'production'
+    debug: process.env.NODE_ENV !== 'production',
+    eslint: { configFile: '.eslintrc' },
   }),
 ];
 
@@ -42,8 +38,8 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
   entry: ['babel-polyfill', './src/client.js'],
   resolve: {
-    modules:            ['node_modules', path.resolve(__dirname, 'src')],
-    extensions:         ['.js', '.jsx']
+    modules:    ['node_modules', path.resolve(__dirname, 'src')],
+    extensions: ['.js', '.jsx']
   },
   plugins,
   output: {

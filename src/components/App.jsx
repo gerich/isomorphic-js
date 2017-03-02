@@ -1,6 +1,5 @@
-import React, { PropTypes, Component } from 'react'
-
-import './App.css'
+import React, { PropTypes, Component } from 'react';
+import './App.css';
 
 const propTypes = {
   initialName: PropTypes.string
@@ -12,9 +11,9 @@ const defaultProps = {
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.handleNameChange = this.handleNameChange.bind(this);
-    this.renderGreetingWidget = this.renderGreetWidget.bind(this);
+    this.renderGreetingWidget = this.renderGreetingWidget.bind(this);
     this.state = {
       name:           this.props.initialName,
       touched:        false,

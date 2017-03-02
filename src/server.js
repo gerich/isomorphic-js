@@ -14,7 +14,7 @@ app.use((request, response) => {
 const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:8050' : '/';
 
 function renderHTML(componentHTML) {
-  console.log(componentHTML);
+
   return `
     <!DOCTYPE html>
       <html>
