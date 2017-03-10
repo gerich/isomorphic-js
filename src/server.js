@@ -1,14 +1,37 @@
 import express  from 'express';
 import React    from 'react';
 import ReactDom from 'react-dom/server';
-import App      from 'components/App';
+import { match, RouterContext } from 'react-router';
+import routes from './routes';
+import { Provider } from 'react-redux';
+import configureStore from './redux/configureStore';
 
 const app = express();
 
-app.use((request, response) => {
-  const componentHTML = ReactDom.renderToString(<App />);
+app.use((req, res) => {
+  match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
+    const store = configureStore();
 
-  response.end(renderHTML(componentHTML));
+    if (redirectLocation) {
+      return res.redirect(301, redirectLocation.pathname + redirectLocation.search);
+    }
+
+    if (error) {
+      return res.status(500).send(error.message);
+    }
+
+    if (!renderProps) {
+      return res.status(404).send('Not Found');
+    }
+
+    const componentHTML = ReactDom.renderToString(
+      <Provider store={store}>
+        <RouterContext {...renderProps} />
+      </Provider>
+    );
+
+    return res.end(renderHTML(componentHTML));
+  });
 });
 
 const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:8050' : '/';
