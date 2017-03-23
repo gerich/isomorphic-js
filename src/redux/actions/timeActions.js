@@ -10,9 +10,10 @@ function timeRequestFinished(time) {
   return { type: TIME_REQUEST_FINISHED, time };
 }
 
-function timeRequestError(errors) {
-  return { type: TIME_REQUEST_ERROR, errors };
-}
+// TODO
+// function timeRequestError(errors) {
+//   return { type: TIME_REQUEST_ERROR, errors };
+// }
 
 export function timeRequest() {
   return (dispatch) => {

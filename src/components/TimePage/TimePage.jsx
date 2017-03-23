@@ -5,7 +5,9 @@ import Button from 'react-bootstrap-button-loader';
 import { timeRequest } from 'redux/actions/timeActions';
 
 const propTypes = {
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  loading:  PropTypes.bool.isRequired,
+  time:     PropTypes.any
 };
 
 class TimePage extends Component {
@@ -20,15 +22,24 @@ class TimePage extends Component {
   }
 
   render() {
+    const { loading, time } = this.props;
+
     return (
-        <div>
-          <PageHeader>Timestamp</PageHeader>
-          <Button onClick={this.handleClick}>Запросить!</Button>
-        </div>
-      );
+      <div>
+        <PageHeader>Timestamp</PageHeader>
+        <Button loading={loading} onClick={this.handleClick}>Запросить!</Button>
+        {time && <div>Time: {time}</div>}
+      </div>
+    );
   }
 }
 
 TimePage.propTypes = propTypes;
 
-export default connect()(TimePage);
+function mapStateToProps(state) {
+  const { loading, time } = state.time;
+
+  return { loading, time };
+}
+
+export default connect(mapStateToProps)(TimePage);
