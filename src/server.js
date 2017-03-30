@@ -15,7 +15,7 @@ app.use(cookieParser());
 app.use((req, res) => {
   const store = configureStore();
 
-  store.dispatch(initialize({
+  return store.dispatch(initialize({
     backend: {
       apiUrl: 'https://redux-oauth-backend.herokuapp.com',
       authProviderPaths: {
@@ -47,7 +47,8 @@ app.use((req, res) => {
       const state = store.getState();
 
       return res.end(renderHTML(componentHTML, state));
-  }));
+    }))
+    .catch((e) => {throw e});
 });
 
 const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:8050' : '/';
