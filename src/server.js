@@ -48,7 +48,9 @@ app.use((req, res) => {
 
       return res.end(renderHTML(componentHTML, state));
     }))
-    .catch((e) => {throw e});
+    .catch((e) => {
+      console.log(e);
+    });
 });
 
 const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:8050' : '/';
