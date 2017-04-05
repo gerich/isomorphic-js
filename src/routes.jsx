@@ -5,7 +5,7 @@ import CounterPage from 'components/CounterPage';
 import HelloWorldPage from 'components/HelloWorldPage';
 import TimePage from 'components/TimePage';
 
-export default (
+const routes =  (
   <Router history={createMemoryHistory()}>
     <Route component={App} path='/'>
       <IndexRoute component={HelloWorldPage} />
@@ -14,3 +14,5 @@ export default (
     </Route>
   </Router>
 );
+
+export default routes;

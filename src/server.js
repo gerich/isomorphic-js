@@ -38,7 +38,7 @@ app.use((req, res) => {
       if (!renderProps) {
         return res.status(404).send('Not Found');
       }
-
+  
       const componentHTML = ReactDom.renderToString(
         <Provider store={store}>
           <RouterContext {...renderProps} />
