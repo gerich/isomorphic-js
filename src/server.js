@@ -66,7 +66,7 @@ function renderHTML(componentHTML, initialState) {
           <title>Hello React</title>
           <link rel="stylesheet" href="${assetUrl}/public/assets/styles.css">
           <script>
-            widow.REDUX_INITIAL_STATE = ${JSON.stringify(initialState)};
+            window.REDUX_INITIAL_STATE = ${JSON.stringify(initialState)};
           </script>
       </head>
       <body>
